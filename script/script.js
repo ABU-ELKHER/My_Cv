@@ -1,28 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Smooth scroll to sections
-    const links = document.querySelectorAll('nav ul li a');
-    links.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            window.scrollTo({
-                top: targetSection.offsetTop - 60,
-                behavior: 'smooth'
-            });
-        });
-    });
+// Get the modal and close button
+const modal = document.getElementById("portfolio-modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".close");
 
-    // Download resume button action
-    document.getElementById('downloadResume').addEventListener('click', function () {
-        alert("Resume download feature coming soon!");
-    });
+// Get all portfolio images
+const portfolioItems = document.querySelectorAll(".portfolio-item");
 
-    // View details for portfolio items
-    const detailsButtons = document.querySelectorAll('.view-details');
-    detailsButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            alert("Details coming soon!");
-        });
-    });
+// Loop through each image and add click event listener
+portfolioItems.forEach(item => {
+  item.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = item.src;
+  });
+});
+
+// Close the modal when the close button is clicked
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Close the modal when clicked outside the image
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
 });
